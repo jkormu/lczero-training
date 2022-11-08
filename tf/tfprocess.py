@@ -1285,7 +1285,7 @@ class TFProcess:
                 # if there are no residual blocks (pure transformer), do some input processing
                 if self.RESIDUAL_BLOCKS == 0:
                     flow = tf.transpose(inputs, perm=[0, 2, 3, 1])
-                    flow = tf.reshape(flow, [-1, 64, tf.shape(inputs)[1]])
+                    flow = tf.reshape(flow, [-1, 64, inputs.shape[1]])
                     # add positional encoding for each square to the input
                     positional_encoding = tf.broadcast_to(tf.convert_to_tensor(self.POS_ENC, dtype=self.model_dtype),
                                                           [tf.shape(flow)[0], 64, tf.shape(self.POS_ENC)[2]])
